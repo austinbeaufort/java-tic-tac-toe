@@ -1,5 +1,6 @@
 package com.tictactoe;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -17,12 +18,14 @@ public class TicTacToe {
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter your placement (1-9):");
-		final int position = scan.nextInt();
-		
-		System.out.println(position);
+		final int playerPosition = scan.nextInt();
 		scan.close();
+		placePiece(gameBoard, playerPosition, "player");
 		
-		placePiece(gameBoard, position, "player");
+		
+		Random rand = new Random();
+		int cpuPosition = rand.nextInt(9) + 1;
+		placePiece(gameBoard, cpuPosition, "cpu");
 		
 		printGameBoard(gameBoard);
 	}
