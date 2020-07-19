@@ -1,10 +1,18 @@
 package com.tictactoe;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
 
+	
+	static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+	
+	
+	
 	public static void main(String[] args) {
 		char [][] gameBoard = { 
 			{ ' ', '|', ' ', '|', ' ' }, 
@@ -15,19 +23,20 @@ public class TicTacToe {
 		};
 		
 		printGameBoard(gameBoard);
-		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter your placement (1-9):");
-		final int playerPosition = scan.nextInt();
-		scan.close();
-		placePiece(gameBoard, playerPosition, "player");
 		
-		
-		Random rand = new Random();
-		int cpuPosition = rand.nextInt(9) + 1;
-		placePiece(gameBoard, cpuPosition, "cpu");
-		
-		printGameBoard(gameBoard);
+		while (true) {
+			System.out.println("Enter your placement (1-9):");
+			final int playerPosition = scan.nextInt();
+			placePiece(gameBoard, playerPosition, "player");
+			
+			
+			Random rand = new Random();
+			int cpuPosition = rand.nextInt(9) + 1;
+			placePiece(gameBoard, cpuPosition, "cpu");
+			
+			printGameBoard(gameBoard);
+		}
 	}
 	
 	
@@ -82,6 +91,18 @@ public class TicTacToe {
 				gameBoard[4][4] = symbol;
 				break;
 			}
+	}
+	
+	
+	public static String checkWinner() {
+		List<Integer> topRow = Arrays.asList(1, 2, 3);
+		List<Integer> midRow = Arrays.asList(4, 5, 6);
+		List<Integer> botRow = Arrays.asList(7, 8, 9);
+		List<Integer> leftCol = Arrays.asList(1, 4, 7);
+		List<Integer> midCol = Arrays.asList(2, 5, 8);
+		List<Integer> rightCol = Arrays.asList(3, 6, 9);
+		List<Integer> cross1 = Arrays.asList(1, 5, 9);
+		List<Integer> cross2 = Arrays.asList(7, 5, 3);
 	}
 
 }
