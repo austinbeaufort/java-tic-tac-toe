@@ -10,6 +10,7 @@ public class TicTacToe {
 
 	
 	static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+	static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
 	
 	
 	
@@ -36,6 +37,9 @@ public class TicTacToe {
 			placePiece(gameBoard, cpuPosition, "cpu");
 			
 			printGameBoard(gameBoard);
+			
+			String result = checkWinner();
+			System.out.println(result);
 		}
 	}
 	
@@ -56,10 +60,13 @@ public class TicTacToe {
 		
 		char symbol = ' ';
 		
-		if (user.equals("player"))
+		if (user.equals("player")) {
 			symbol = 'X';
-		else if (user.equals("cpu"))
+			playerPositions.add(position);
+		} else if (user.equals("cpu")) {
 			symbol = '0';
+			cpuPositions.add(position);
+		}
 		
 		
 		switch(position) {
@@ -103,6 +110,25 @@ public class TicTacToe {
 		List<Integer> rightCol = Arrays.asList(3, 6, 9);
 		List<Integer> cross1 = Arrays.asList(1, 5, 9);
 		List<Integer> cross2 = Arrays.asList(7, 5, 3);
+		
+		List<List> winning = new ArrayList<List>();
+		winning.add(topRow);
+		winning.add(midRow);
+		winning.add(botRow);
+		winning.add(leftCol);
+		winning.add(midCol);
+		winning.add(rightCol);
+		winning.add(cross1);
+		winning.add(cross2);
+		
+		for (List l: winning) {
+			if (playerPositions.containsAll(l))
+				return "Congratulations you won!";
+			else if (cpuPositions.contains(l))
+				return "CPU wins! Sorry :( ";
+			else if (playerPositions.size() + cpuPositions.size() == 9)
+				return "TIE!";
+		}
 	}
 
 }
