@@ -36,6 +36,12 @@ public class TicTacToe {
 				
 			placePiece(gameBoard, playerPosition, "player");
 			
+			String result = checkWinner();
+			if (result.length() > 0) {
+				System.out.println(result);
+				break;
+			}
+			
 			
 			Random rand = new Random();
 			int cpuPosition = rand.nextInt(9) + 1;
@@ -46,8 +52,11 @@ public class TicTacToe {
 			
 			printGameBoard(gameBoard);
 			
-			String result = checkWinner();
-			System.out.println(result);
+			result = checkWinner();
+			if (result.length() > 0) {
+				System.out.println(result);
+				break;
+			}
 		}
 	}
 	
