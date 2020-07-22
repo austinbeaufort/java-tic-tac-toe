@@ -28,12 +28,20 @@ public class TicTacToe {
 		
 		while (true) {
 			System.out.println("Enter your placement (1-9):");
-			final int playerPosition = scan.nextInt();
+			int playerPosition = scan.nextInt();
+			while (playerPositions.contains(playerPosition) || cpuPositions.contains(playerPosition)) {
+				System.out.println("Position taken! Enter a correct position: ");
+				playerPosition = scan.nextInt();
+			}
+				
 			placePiece(gameBoard, playerPosition, "player");
 			
 			
 			Random rand = new Random();
 			int cpuPosition = rand.nextInt(9) + 1;
+			while (playerPositions.contains(cpuPosition) || cpuPositions.contains(cpuPosition))
+				cpuPosition = rand.nextInt(9) + 1;
+				
 			placePiece(gameBoard, cpuPosition, "cpu");
 			
 			printGameBoard(gameBoard);
@@ -129,6 +137,8 @@ public class TicTacToe {
 			else if (playerPositions.size() + cpuPositions.size() == 9)
 				return "TIE!";
 		}
+		
+		return "";
 	}
 
 }
