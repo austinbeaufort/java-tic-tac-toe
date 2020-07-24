@@ -55,6 +55,7 @@ public class TicTacToe {
 			result = checkWinner();
 			if (result.length() > 0) {
 				System.out.println(result);
+				scan.close();
 				break;
 			}
 		}
